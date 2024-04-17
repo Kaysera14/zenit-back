@@ -41,8 +41,8 @@ const init = async () => {
     CREATE TABLE IF NOT EXISTS model_images(
       model_image_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
       post VARCHAR(30) NOT NULL,
-      url VARCHAR(255),
-      createdAt DATETIME NOT NULL DEFAULT NOW(),
+      url VARCHAR(255) NOT NULL,
+      cover BOOLEAN DEFAULT false,
       FOREIGN KEY (post) REFERENCES models(slug)
     );
     `);

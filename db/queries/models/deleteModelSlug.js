@@ -7,14 +7,21 @@ const deleteModelSlug = async (slug) => {
   try {
     connection = await getPool();
 
-    const [rentalExists] = await connection.query(
+    const [modelExists] = await connection.query(
       `SELECT * FROM models WHERE slug=?`,
       [slug]
     );
 
-    if (rentalExists.length === 0) {
+    if (modelExists.length === 0) {
       throw generateError(`¡Este modelo no existe!`, 403);
     }
+
+    await connection.query(
+      `
+        DELETE FROM model_images WHERE post=?
+      `,
+      [slug]
+    );
 
     await connection.query(
       `

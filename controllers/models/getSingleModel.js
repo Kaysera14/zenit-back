@@ -3,10 +3,11 @@ const { getOneModel } = require('../../db/queries/models/getOneModel.js');
 const getSingleModel = async (req, res, next) => {
   try {
     const { slug } = req.params;
-    const rentings = await getOneModel(slug);
+    const model = await getOneModel(slug);
     res.send({
       status: 'ok',
-      data: rentings,
+      data: model[0],
+      images: model[1],
     });
   } catch (error) {
     next(error);

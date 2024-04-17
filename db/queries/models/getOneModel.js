@@ -6,7 +6,7 @@ const getOneModel = async (slug) => {
   try {
     connection = await getPool();
 
-    const [result] = await connection.query(
+    const [info] = await connection.query(
       `
       SELECT *
       FROM models
@@ -14,6 +14,17 @@ const getOneModel = async (slug) => {
         `,
       [slug]
     );
+
+    const [images] = await connection.query(
+      `
+      SELECT *
+      FROM model_images
+      WHERE post = ?
+      `,
+      [slug]
+    );
+
+    const result = [info[0], images];
 
     return result;
   } finally {
