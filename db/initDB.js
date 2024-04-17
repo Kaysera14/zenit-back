@@ -18,6 +18,7 @@ const init = async () => {
       username VARCHAR(20) PRIMARY KEY UNIQUE NOT NULL,
       email VARCHAR(100) UNIQUE NOT NULL,
       password VARCHAR(100) NOT NULL,
+      active BOOLEAN DEFAULT false,
       registrationCode VARCHAR(100)	
     );
     `);

@@ -33,10 +33,14 @@ app.use(fileUpload());
 app.use('/uploads/models', express.static('./uploads/models'));
 
 // Controllers usuarios
+const { register, validate, login } = require('./controllers/users/index.js');
 
 // Controllers modelos
 
 // Rutas usuarios
+app.post('/api/register', register); // Registro de usuario
+app.post('/api/validate/:registrationCode', validate); // Validación de usuario en base a correo y código
+app.post('/api/login', login); // Login del usuario en base a correo
 
 // Rutas modelos
 
