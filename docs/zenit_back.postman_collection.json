@@ -29,7 +29,7 @@
 								},
 								{
 									"key": "password",
-									"value": "",
+									"value": "Pass1234",
 									"type": "text"
 								}
 							]
@@ -68,6 +68,19 @@
 				},
 				{
 					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"    pm.collectionVariables.set('JWT', responseJson.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -81,7 +94,7 @@
 								},
 								{
 									"key": "password",
-									"value": "",
+									"value": "Pass1234",
 									"type": "text"
 								}
 							]
@@ -103,7 +116,245 @@
 		},
 		{
 			"name": "models",
-			"item": []
+			"item": [
+				{
+					"name": "all-models",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/models",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"models"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "single-model",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/models/braum",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"models",
+								"braum"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "filters",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/filter?category1=Personal&category2=Cartoon",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"filter"
+							],
+							"query": [
+								{
+									"key": "category1",
+									"value": "Personal"
+								},
+								{
+									"key": "category2",
+									"value": "Cartoon"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "newModel",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Braum",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "El hijo de hielo",
+									"type": "text"
+								},
+								{
+									"key": "technologies",
+									"value": "Maya",
+									"type": "text"
+								},
+								{
+									"key": "category1",
+									"value": "Personal",
+									"description": "Personal/Professional",
+									"type": "text"
+								},
+								{
+									"key": "category2",
+									"value": "Cartoon",
+									"description": "Cartoon/Realistic/Stylized",
+									"type": "text"
+								},
+								{
+									"key": "image1",
+									"description": "Portada",
+									"type": "file",
+									"src": "/D:/Descargas/ariadna/web-bestie/braum/aznar/portada.png"
+								},
+								{
+									"key": "image2",
+									"type": "file",
+									"src": "/D:/Descargas/ariadna/web-bestie/braum/aznar/tbrender.png"
+								},
+								{
+									"key": "image3",
+									"type": "file",
+									"src": "/D:/Descargas/ariadna/web-bestie/braum/aznar/tbrender_001.png"
+								},
+								{
+									"key": "image4",
+									"type": "file",
+									"src": "/D:/Descargas/ariadna/web-bestie/braum/aznar/tbrender_002.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/api/models",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"models"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateModel",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Prueba 1",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Prueba",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "technologies",
+									"value": "Prueba",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "category1",
+									"value": "Professional",
+									"description": "Personal/Professional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "category2",
+									"value": "Stylized",
+									"description": "Cartoon/Realistic/Stylized",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/api/models/prueba",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"models",
+								"prueba"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteModel",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{JWT}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/api/models/braum",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"models",
+								"braum"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"auth": {

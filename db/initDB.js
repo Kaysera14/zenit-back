@@ -30,6 +30,8 @@ const init = async () => {
       title VARCHAR(50) NOT NULL,
       description VARCHAR(255) NOT NULL,
       technologies VARCHAR(255) NOT NULL,
+      category1 ENUM('Personal', 'Professional') NOT NULL,
+      category2 ENUM('Cartoon', 'Realistic', 'Stylized') NOT NULL,
       createdAt DATETIME NOT NULL DEFAULT NOW()
     );
     `);
@@ -39,8 +41,8 @@ const init = async () => {
     CREATE TABLE IF NOT EXISTS model_images(
       model_image_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
       post VARCHAR(30) NOT NULL,
-      url VARCHAR(255),
-      createdAt DATETIME NOT NULL DEFAULT NOW(),
+      url VARCHAR(255) NOT NULL,
+      cover BOOLEAN DEFAULT false,
       FOREIGN KEY (post) REFERENCES models(slug)
     );
     `);
