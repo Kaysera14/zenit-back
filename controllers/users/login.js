@@ -1,11 +1,17 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const checkEmail = require('../../db/queries/users/checkEmail.js');
-const { generateError } = require('../../helpers/');
+const { generateError, verifyEmail } = require('../../helpers/');
 
 const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
+
+    const checkedEmail = await verifyEmail(email);
+    if (!checkedEmail) {
+      throw generateError('Forbidden request', 403);
+    }
+
     const userDB = await checkEmail(email);
     if (!userDB) {
       throw generateError('El email o la contraseña son incorrectos', 400);
