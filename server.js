@@ -6,6 +6,7 @@ const cors = require('cors');
 const fileUpload = require('express-fileupload');
 
 const app = express();
+app.get('/', (req, res) => res.send('Express on Vercel'));
 const { port } = require('./config.js');
 
 app.use(cors());
@@ -68,3 +69,5 @@ app.use((req, res) => {
 app.listen(port, () =>
   console.log(`El servidor se está ejecutando en: http://localhost:${port}`)
 );
+
+module.exports = app;
