@@ -30,6 +30,8 @@ const init = async () => {
       title VARCHAR(50) NOT NULL,
       description VARCHAR(255) NOT NULL,
       technologies VARCHAR(255) NOT NULL,
+      category1 ENUM('Personal', 'Professional') NOT NULL,
+      category2 ENUM('Cartoon', 'Realistic', 'Stylized') NOT NULL,
       createdAt DATETIME NOT NULL DEFAULT NOW()
     );
     `);
