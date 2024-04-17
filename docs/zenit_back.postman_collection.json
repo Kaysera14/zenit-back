@@ -29,7 +29,7 @@
 								},
 								{
 									"key": "password",
-									"value": "",
+									"value": "Pass1234",
 									"type": "text"
 								}
 							]
@@ -94,7 +94,7 @@
 								},
 								{
 									"key": "password",
-									"value": "",
+									"value": "Pass1234",
 									"type": "text"
 								}
 							]
@@ -141,14 +141,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/api/models/test-de-prueba",
+							"raw": "{{URL}}/api/models/braum",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"api",
 								"models",
-								"test-de-prueba"
+								"braum"
 							]
 						}
 					},
@@ -201,30 +201,51 @@
 							"formdata": [
 								{
 									"key": "title",
-									"value": "Prueba 6",
+									"value": "Braum",
 									"type": "text"
 								},
 								{
 									"key": "description",
-									"value": "Prueba",
+									"value": "El hijo de hielo",
 									"type": "text"
 								},
 								{
 									"key": "technologies",
-									"value": "Prueba",
+									"value": "Maya",
 									"type": "text"
 								},
 								{
 									"key": "category1",
-									"value": "Professional",
+									"value": "Personal",
 									"description": "Personal/Professional",
 									"type": "text"
 								},
 								{
 									"key": "category2",
-									"value": "Stylized",
+									"value": "Cartoon",
 									"description": "Cartoon/Realistic/Stylized",
 									"type": "text"
+								},
+								{
+									"key": "image1",
+									"description": "Portada",
+									"type": "file",
+									"src": "/D:/Descargas/ariadna/web-bestie/braum/aznar/portada.png"
+								},
+								{
+									"key": "image2",
+									"type": "file",
+									"src": "/D:/Descargas/ariadna/web-bestie/braum/aznar/tbrender.png"
+								},
+								{
+									"key": "image3",
+									"type": "file",
+									"src": "/D:/Descargas/ariadna/web-bestie/braum/aznar/tbrender_001.png"
+								},
+								{
+									"key": "image4",
+									"type": "file",
+									"src": "/D:/Descargas/ariadna/web-bestie/braum/aznar/tbrender_002.png"
 								}
 							]
 						},
@@ -320,14 +341,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{URL}}/api/models/prueba-6",
+							"raw": "{{URL}}/api/models/braum",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"api",
 								"models",
-								"prueba-6"
+								"braum"
 							]
 						}
 					},

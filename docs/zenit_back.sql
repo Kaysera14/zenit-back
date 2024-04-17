@@ -17,7 +17,6 @@ CREATE TABLE IF NOT EXISTS models(
       technologies VARCHAR(255) NOT NULL,
       category1 ENUM('Personal', 'Professional') NOT NULL,
       category2 ENUM('Cartoon', 'Realistic', 'Stylized') NOT NULL,
-      createdAt DATETIME NOT NULL DEFAULT NOW()
     );
 
 CREATE TABLE IF NOT EXISTS model_images(
