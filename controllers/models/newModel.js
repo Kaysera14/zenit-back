@@ -41,12 +41,7 @@ const newModel = async (req, res, next) => {
     );
 
     // Procesado de imagenes
-    const array = [
-      req.files.image1,
-      req.files.image2,
-      req.files.image3,
-      req.files.image4,
-    ];
+    const array = Object.values(req.files).slice();
 
     for (let index = 0; index < array.length; index++) {
       let cover;

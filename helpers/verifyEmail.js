@@ -1,10 +1,6 @@
 async function verifyEmail(email) {
   try {
-    const allowedEmails = [
-      'ariadna.aguilera5@gmail.com',
-      'zenit.bragi@gmail.com',
-      'antoniorondanvlc@gmail.com',
-    ];
+    const allowedEmails = process.env.ALLOWED_EMAILS.split(', ');
 
     const normalizedEmail = email.toLowerCase();
     const isAllowed = allowedEmails.some(
