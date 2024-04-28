@@ -25,11 +25,7 @@ const newModel = async (req, res, next) => {
     const { title, description, technologies, category1, category2 } = req.body;
     const url = slug(title);
 
-    const HOST =
-      'http://' +
-      (process.env.HOST || 'localhost') +
-      ':' +
-      (process.env.PORT || 3000);
+    const HOST = process.env.HOST;
 
     await createModel(
       url,
