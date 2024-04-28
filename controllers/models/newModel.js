@@ -25,8 +25,6 @@ const newModel = async (req, res, next) => {
     const { title, description, technologies, category1, category2 } = req.body;
     const url = slug(title);
 
-    const HOST = process.env.HOST;
-
     await createModel(
       url,
       title,
@@ -47,7 +45,7 @@ const newModel = async (req, res, next) => {
       const imageName = array[index].name;
       const ext = path.extname(imageName).toLowerCase();
       const newName = `${url}__${uuid}${ext}`;
-      const imgUrl = `${HOST}/uploads/models/${newName}`;
+      const imgUrl = `/uploads/models/${newName}`;
 
       if (req.files && array[index]) {
         await sharp(array[index].data)
