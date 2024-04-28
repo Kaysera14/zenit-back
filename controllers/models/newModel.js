@@ -1,3 +1,4 @@
+const fs = require('fs/promises');
 const slug = require('slug');
 const jwt = require('jsonwebtoken');
 const sharp = require('sharp');
@@ -48,14 +49,24 @@ const newModel = async (req, res, next) => {
       const imgUrl = `/uploads/models/${newName}`;
 
       if (req.files && array[index]) {
-        await sharp(array[index].data)
-          .webp({ effort: 6 })
-          .toFile(path.join(directory, newName), (err) => {
+        if (array[index].mimetype.startsWith('image/')) {
+          await sharp(array[index].data)
+            .webp({ effort: 6 })
+            .toFile(path.join(directory, newName), (err) => {
+              if (err) {
+                console.error(err);
+              }
+            });
+        } else {
+          const filePath = path.join(directory, newName);
+          fs.writeFile(filePath, array[index].data, (err) => {
             if (err) {
               console.error(err);
             }
           });
+        }
       }
+
       if (index === 0) {
         cover = 1;
         await modelImages(url, imgUrl, cover);
