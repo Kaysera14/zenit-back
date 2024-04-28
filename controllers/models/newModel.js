@@ -1,4 +1,4 @@
-const fs = require('fs/promises');
+const fs = require('fs');
 const slug = require('slug');
 const jwt = require('jsonwebtoken');
 const sharp = require('sharp');
