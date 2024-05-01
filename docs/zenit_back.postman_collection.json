@@ -29,15 +29,15 @@
 								},
 								{
 									"key": "password",
-									"value": "Pass1234",
+									"value": "V$oQ3KVG42",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "{{URL}}/api/register",
+							"raw": "{{local}}/api/register",
 							"host": [
-								"{{URL}}"
+								"{{local}}"
 							],
 							"path": [
 								"api",
@@ -53,9 +53,9 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/api/validate/",
+							"raw": "{{local}}/api/validate/",
 							"host": [
-								"{{URL}}"
+								"{{local}}"
 							],
 							"path": [
 								"api",
@@ -94,15 +94,15 @@
 								},
 								{
 									"key": "password",
-									"value": "Pass1234",
+									"value": "V$oQ3KVG42",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "{{URL}}/api/login",
+							"raw": "{{local}}/api/login",
 							"host": [
-								"{{URL}}"
+								"{{local}}"
 							],
 							"path": [
 								"api",
@@ -123,9 +123,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/api/models",
+							"raw": "{{local}}/api/models",
 							"host": [
-								"{{URL}}"
+								"{{local}}"
 							],
 							"path": [
 								"api",
@@ -141,9 +141,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/api/models/braum",
+							"raw": "{{local}}/api/models/braum",
 							"host": [
-								"{{URL}}"
+								"{{local}}"
 							],
 							"path": [
 								"api",
@@ -160,9 +160,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/api/filter?category1=Personal&category2=Cartoon",
+							"raw": "{{local}}/api/filter?category1=Personal&category2=Cartoon",
 							"host": [
-								"{{URL}}"
+								"{{local}}"
 							],
 							"path": [
 								"api",
@@ -193,7 +193,7 @@
 							{
 								"key": "Authorization",
 								"value": "{{JWT}}",
-								"type": "text"
+								"uuid": "07dcf549-4bd5-426c-8ca0-ccae6ca8b970"
 							}
 						],
 						"body": {
@@ -206,12 +206,12 @@
 								},
 								{
 									"key": "description",
-									"value": "El hijo de hielo",
+									"value": "Braum is a powerhouse hero from the icy realm of Freljord in League of Legends.  Famed for his immense strength and even bigger heart, Braum is a legend throughout the north.  Stories are told of his incredible feats, like felling a forest of oaks in a single night or punching a mountain into rubble.\n\nBraum isn't just about brute force though.  He wields a massive enchanted vault door as his shield, and uses it to protect his allies.  He’s known for his booming laugh and jovial personality, always eager to lend a hand (or a massive shield) to those in need.",
 									"type": "text"
 								},
 								{
 									"key": "technologies",
-									"value": "Maya",
+									"value": "ZBrush, Maya, 3DMax, Substance Painter, Marmoset Toolbag 4",
 									"type": "text"
 								},
 								{
@@ -222,7 +222,7 @@
 								},
 								{
 									"key": "category2",
-									"value": "Cartoon",
+									"value": "Stylized",
 									"description": "Cartoon/Realistic/Stylized",
 									"type": "text"
 								},
@@ -246,13 +246,43 @@
 									"key": "image4",
 									"type": "file",
 									"src": "/D:/Descargas/ariadna/web-bestie/braum/aznar/tbrender_002.png"
+								},
+								{
+									"key": "image5",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "image6",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "video1",
+									"type": "file",
+									"src": "/D:/Descargas/ariadna/web-bestie/braum/aznar/tbrender_FullQuality.mp4"
+								},
+								{
+									"key": "video2",
+									"type": "file",
+									"src": "/D:/Descargas/ariadna/web-bestie/braum/aznar/tbrender.mp4"
+								},
+								{
+									"key": "video3",
+									"type": "file",
+									"src": "/D:/Descargas/ariadna/web-bestie/braum/aznar/braum_001.mp4"
+								},
+								{
+									"key": "video4",
+									"type": "file",
+									"src": "/D:/Descargas/ariadna/web-bestie/braum/aznar/braum.mp4"
 								}
 							]
 						},
 						"url": {
-							"raw": "{{URL}}/api/models",
+							"raw": "{{local}}/api/models",
 							"host": [
-								"{{URL}}"
+								"{{local}}"
 							],
 							"path": [
 								"api",
@@ -273,7 +303,7 @@
 							{
 								"key": "Authorization",
 								"value": "{{JWT}}",
-								"type": "text"
+								"uuid": "ad6bf494-98e1-4dcb-be3a-528d28888ef8"
 							}
 						],
 						"body": {
@@ -313,9 +343,9 @@
 							]
 						},
 						"url": {
-							"raw": "{{URL}}/api/models/prueba",
+							"raw": "{{local}}/api/models/prueba",
 							"host": [
-								"{{URL}}"
+								"{{local}}"
 							],
 							"path": [
 								"api",
@@ -337,13 +367,13 @@
 							{
 								"key": "Authorization",
 								"value": "{{JWT}}",
-								"type": "text"
+								"uuid": "97064b08-4340-4f2e-b206-ceb4da03ecc8"
 							}
 						],
 						"url": {
-							"raw": "{{URL}}/api/models/braum",
+							"raw": "{{local}}/api/models/braum",
 							"host": [
-								"{{URL}}"
+								"{{local}}"
 							],
 							"path": [
 								"api",
@@ -391,12 +421,17 @@
 	],
 	"variable": [
 		{
-			"key": "URL",
+			"key": "local",
 			"value": "localhost:3000"
 		},
 		{
 			"key": "JWT",
 			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "deploy",
+			"value": "https://zenitbragi.alwaysdata.net",
 			"type": "string"
 		}
 	]
