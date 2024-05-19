@@ -50,6 +50,17 @@ const init = async () => {
     );
     `);
 
+    console.log('Creando tabla model_videos');
+    await connection.query(`
+    CREATE TABLE IF NOT EXISTS model_videos(
+      model_video_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+      post VARCHAR(30) NOT NULL,
+      url VARCHAR(255) NOT NULL,
+      cover BOOLEAN DEFAULT false,
+      FOREIGN KEY (post) REFERENCES models(slug)
+    );
+    `);
+
     console.log('Tablas creadas');
   } catch (error) {
     console.error(error);
