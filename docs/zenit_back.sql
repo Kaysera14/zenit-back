@@ -26,3 +26,11 @@ CREATE TABLE IF NOT EXISTS model_images(
       createdAt DATETIME NOT NULL DEFAULT NOW(),
       FOREIGN KEY (post) REFERENCES models(slug)
     );
+
+CREATE TABLE IF NOT EXISTS model_videos(
+      model_video_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+      post VARCHAR(30) NOT NULL,
+      url VARCHAR(255),
+      createdAt DATETIME NOT NULL DEFAULT NOW(),
+      FOREIGN KEY (post) REFERENCES models(slug)
+    );

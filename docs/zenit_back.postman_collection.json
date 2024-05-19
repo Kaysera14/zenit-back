@@ -160,7 +160,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{local}}/api/filter?category1=Personal&category2=Cartoon",
+							"raw": "{{local}}/api/filter?category1=Personal&category2=",
 							"host": [
 								"{{local}}"
 							],
@@ -175,7 +175,7 @@
 								},
 								{
 									"key": "category2",
-									"value": "Cartoon"
+									"value": ""
 								}
 							]
 						}
@@ -192,8 +192,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "{{JWT}}",
-								"uuid": "07dcf549-4bd5-426c-8ca0-ccae6ca8b970"
+								"value": "{{JWT}}"
 							}
 						],
 						"body": {
@@ -230,22 +229,22 @@
 									"key": "image1",
 									"description": "Portada",
 									"type": "file",
-									"src": "/D:/Descargas/ariadna/web-bestie/braum/aznar/portada.png"
+									"src": "/D:/Descargas/ariadna/web-bestie/braum/aznar/0.png"
 								},
 								{
 									"key": "image2",
 									"type": "file",
-									"src": "/D:/Descargas/ariadna/web-bestie/braum/aznar/tbrender.png"
+									"src": "/D:/Descargas/ariadna/web-bestie/braum/aznar/1.png"
 								},
 								{
 									"key": "image3",
 									"type": "file",
-									"src": "/D:/Descargas/ariadna/web-bestie/braum/aznar/tbrender_001.png"
+									"src": "/D:/Descargas/ariadna/web-bestie/braum/aznar/2.png"
 								},
 								{
 									"key": "image4",
 									"type": "file",
-									"src": "/D:/Descargas/ariadna/web-bestie/braum/aznar/tbrender_002.png"
+									"src": "/D:/Descargas/ariadna/web-bestie/braum/aznar/3.png"
 								},
 								{
 									"key": "image5",
@@ -259,23 +258,23 @@
 								},
 								{
 									"key": "video1",
-									"type": "file",
-									"src": "/D:/Descargas/ariadna/web-bestie/braum/aznar/tbrender_FullQuality.mp4"
+									"value": "",
+									"type": "text"
 								},
 								{
 									"key": "video2",
-									"type": "file",
-									"src": "/D:/Descargas/ariadna/web-bestie/braum/aznar/tbrender.mp4"
+									"value": "",
+									"type": "text"
 								},
 								{
 									"key": "video3",
-									"type": "file",
-									"src": "/D:/Descargas/ariadna/web-bestie/braum/aznar/braum_001.mp4"
+									"value": "",
+									"type": "text"
 								},
 								{
 									"key": "video4",
-									"type": "file",
-									"src": "/D:/Descargas/ariadna/web-bestie/braum/aznar/braum.mp4"
+									"value": "",
+									"type": "text"
 								}
 							]
 						},
@@ -302,8 +301,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "{{JWT}}",
-								"uuid": "ad6bf494-98e1-4dcb-be3a-528d28888ef8"
+								"value": "{{JWT}}"
 							}
 						],
 						"body": {
@@ -366,8 +364,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "{{JWT}}",
-								"uuid": "97064b08-4340-4f2e-b206-ceb4da03ecc8"
+								"value": "{{JWT}}"
 							}
 						],
 						"url": {
