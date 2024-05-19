@@ -24,7 +24,16 @@ const getOneModel = async (slug) => {
       [slug]
     );
 
-    const result = [info[0], images];
+    const [videos] = await connection.query(
+      `
+      SELECT *
+      FROM model_videos
+      WHERE post = ?
+      `,
+      [slug]
+    );
+
+    const result = [info[0], images, videos];
 
     return result;
   } finally {

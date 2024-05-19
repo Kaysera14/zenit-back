@@ -8,6 +8,7 @@ const getSingleModel = async (req, res, next) => {
       status: 'ok',
       data: model[0],
       images: model[1],
+      videos: model[2],
     });
   } catch (error) {
     next(error);

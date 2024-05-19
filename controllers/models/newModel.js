@@ -41,28 +41,27 @@ const newModel = async (req, res, next) => {
     for (let index = 0; index < array.length; index++) {
       let cover;
       const uuid = randomUUID();
-      const directory = path.join(__dirname, '..', '..', 'uploads', 'models');
+      const directory = path.join(__dirname, '..', '..', 'uploads');
       await createPathIfNotExists(directory);
-      const imageName = array[index].name;
-      const ext = path.extname(imageName).toLowerCase();
-      const newName = `${url}__${uuid}${ext}`;
+      const models = path.join(directory, 'models');
+      await createPathIfNotExists(models);
+      const newName = `${url}__${uuid}.webp`;
       const imgUrl = `/uploads/models/${newName}`;
 
       if (req.files && array[index]) {
         if (array[index].mimetype.startsWith('image/')) {
           await sharp(array[index].data)
-            .webp({ effort: 6 })
-            .toFile(path.join(directory, newName), (err) => {
+            .toFormat('webp')
+            .webp({ effort: 6, quality: 80 })
+            .toFile(path.join(models, newName), (err) => {
               if (err) {
                 console.error(err);
               }
             });
         } else {
-          const filePath = path.join(directory, newName);
-          fs.writeFile(filePath, array[index].data, (err) => {
-            if (err) {
-              console.error(err);
-            }
+          res.send({
+            status: 'error',
+            message: 'El archivo no es una imagen',
           });
         }
       }

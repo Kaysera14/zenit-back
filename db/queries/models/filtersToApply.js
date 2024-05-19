@@ -4,9 +4,10 @@ const filtersToApply = async (queryParams) => {
   const pool = await getPool();
   const { category1, category2 } = queryParams;
 
-  let sqlQuery = 'SELECT * FROM models';
+  let sqlQuery =
+    'SELECT m.*, mi.url AS cover_url FROM models m JOIN model_images mi ON mi.post = m.slug WHERE mi.cover = 1';
   const values = [];
-  let clause = 'WHERE';
+  let clause = 'AND';
 
   if (category1) {
     sqlQuery += ` ${clause} category1 LIKE ?`;
@@ -17,7 +18,6 @@ const filtersToApply = async (queryParams) => {
   if (category2) {
     sqlQuery += ` ${clause} category2 LIKE ?`;
     values.push(`%${category2}%`);
-    clause = 'AND';
   }
 
   const [models] = await pool.query(sqlQuery, values);

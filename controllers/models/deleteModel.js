@@ -21,7 +21,7 @@ const deleteModel = async (req, res, next) => {
 
     res.send({
       status: 'ok',
-      message: `${slug} has been deleted`,
+      message: `${slug} ha sido borrado.`,
     });
   } catch (error) {
     next(error);
