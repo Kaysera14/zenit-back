@@ -9,13 +9,17 @@ const register = async (req, res, next) => {
 
     const checkedEmail = await verifyEmail(email);
     if (!checkedEmail) {
-      throw generateError('Forbidden request', 403);
+      res.send({
+        status: 'error',
+        message: 'Only allowed emails are allowed to register.',
+      });
+      throw generateError('Forbidden request', 400);
     }
 
     const encryptedPassword = await bcrypt.hash(password, 10);
     const registrationCode = crypto.randomUUID();
 
-    const HOST = process.env.HOST;
+    const FRONT = process.env.FRONT;
 
     await newUser({
       ...req.body,
@@ -25,13 +29,13 @@ const register = async (req, res, next) => {
 
     await sendMail({
       to: email,
-      subject: 'Verifica tu correo electrónico',
-      HTMLPart: `Por favor, <a href='${HOST}/validate/${registrationCode}'>haz click aquí</a> para validar tu cuenta.<br/> En caso de no funcionar, por favor introduce este código manualmente: ${registrationCode}`,
+      subject: `Verifica tu correo electrónico ${username}`,
+      HTMLPart: `Por favor, <a href='${FRONT}/validate?registrationCode=${registrationCode}'>haz click aquí</a> para validar tu cuenta.<br/> En caso de no funcionar, por favor introduce este código manualmente: ${registrationCode}`,
     });
-
     res.status(201).send({
       status: 'ok',
-      data: { email, username },
+      message:
+        'Usuario registrado correctamente. Por favor, revisa tu correo electrónico para validar tu cuenta.',
     });
   } catch (error) {
     next(error);

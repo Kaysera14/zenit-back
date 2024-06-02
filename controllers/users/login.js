@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const checkEmail = require('../../db/queries/users/checkEmail.js');
-const { generateError, verifyEmail } = require('../../helpers/');
+const { verifyEmail } = require('../../helpers/');
 
 const login = async (req, res, next) => {
   try {
@@ -9,20 +9,34 @@ const login = async (req, res, next) => {
 
     const checkedEmail = await verifyEmail(email);
     if (!checkedEmail) {
-      throw generateError('Forbidden request', 403);
+      res.send({
+        status: 'error',
+        message: 'Only allowed emails are allowed to login.',
+      });
     }
 
     const userDB = await checkEmail(email);
     if (!userDB) {
-      throw generateError('El email o la contraseña son incorrectos', 400);
+      res.send({
+        status: 'error',
+        message:
+          'This email is not registered. Please sign up if you are on the allowed list.',
+      });
     }
     if (userDB.active !== 1) {
-      throw generateError('El usuario no está activo', 400);
+      res.send({
+        status: 'error',
+        message:
+          'User is not active. Please check your email to activate your account.',
+      });
     }
     const checkPassword = await bcrypt.compare(password, userDB.password);
 
     if (!checkPassword) {
-      throw generateError('El email o la contraseña son incorrectos', 400);
+      res.send({
+        status: 'error',
+        message: 'Password is incorrect. Please try again.',
+      });
     }
 
     const { username, role } = userDB;
