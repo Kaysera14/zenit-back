@@ -39,8 +39,8 @@ const login = async (req, res, next) => {
       });
     }
 
-    const { username, role } = userDB;
-    const tokenPayLoad = { username, email, role };
+    const { username } = userDB;
+    const tokenPayLoad = { username, email };
     const expiresIn = '30d';
     const token = jwt.sign(tokenPayLoad, process.env.SECRET, { expiresIn });
     res.send({ status: 'ok', data: { tokenPayLoad, expiresIn }, token });

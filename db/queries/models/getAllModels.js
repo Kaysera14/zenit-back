@@ -4,19 +4,17 @@ const getAllModels = async () => {
   let connection;
 
   try {
-    let result = [];
     connection = await getPool();
 
-    const [info] = await connection.query(
+    const [result] = await connection.query(
       `
-        SELECT m.*, mi.url AS cover_url
+        SELECT m.model_id, m.slug, m.title, m.category1, m.category2, mi.url AS cover
         FROM models m
         JOIN model_images mi ON mi.post = m.slug
         WHERE mi.cover = 1
         ORDER BY m.createdAt DESC
       `
     );
-    result.push(info);
 
     return result;
   } finally {
