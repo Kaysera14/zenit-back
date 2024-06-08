@@ -24,6 +24,7 @@ const newModel = async (req, res, next) => {
     }
 
     const { title, description, technologies, category1, category2 } = req.body;
+    console.log(req.body);
     const url = slug(title);
 
     await createModel(
@@ -35,7 +36,7 @@ const newModel = async (req, res, next) => {
       category2
     );
 
-    // Procesado de imagenes
+    /* // Procesado de imagenes
     const array = Object.values(req.files).slice();
 
     for (let index = 0; index < array.length; index++) {
@@ -73,7 +74,7 @@ const newModel = async (req, res, next) => {
         cover = 0;
         await modelImages(url, imgUrl, cover);
       }
-    }
+    } */
 
     res.send({
       status: 'ok',
