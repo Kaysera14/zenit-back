@@ -24,7 +24,7 @@ const newModel = async (req, res, next) => {
     }
 
     const { title, description, technologies, category1, category2 } = req.body;
-    console.log(req.body);
+    const { images } = req.files;
     const url = slug(title);
 
     await createModel(
@@ -36,36 +36,25 @@ const newModel = async (req, res, next) => {
       category2
     );
 
-    /* // Procesado de imagenes
-    const array = Object.values(req.files).slice();
-
-    for (let index = 0; index < array.length; index++) {
+    // Procesado de imagenes
+    for (let index = 0; index < images.length; index++) {
       let cover;
       const uuid = randomUUID();
+      const newName = `${url}__${uuid}.webp`;
       const directory = path.join(__dirname, '..', '..', 'uploads');
       await createPathIfNotExists(directory);
       const models = path.join(directory, 'models');
       await createPathIfNotExists(models);
-      const newName = `${url}__${uuid}.webp`;
       const imgUrl = `/uploads/models/${newName}`;
 
-      if (req.files && array[index]) {
-        if (array[index].mimetype.startsWith('image/')) {
-          await sharp(array[index].data)
-            .toFormat('webp')
-            .webp({ effort: 6, quality: 80 })
-            .toFile(path.join(models, newName), (err) => {
-              if (err) {
-                console.error(err);
-              }
-            });
-        } else {
-          res.send({
-            status: 'error',
-            message: 'El archivo no es una imagen',
-          });
-        }
-      }
+      await sharp(images[index].data)
+        .toFormat('webp')
+        .webp({ effort: 6, quality: 80 })
+        .toFile(path.join(models, newName), (err) => {
+          if (err) {
+            console.error(err);
+          }
+        });
 
       if (index === 0) {
         cover = 1;
@@ -74,7 +63,7 @@ const newModel = async (req, res, next) => {
         cover = 0;
         await modelImages(url, imgUrl, cover);
       }
-    } */
+    }
 
     res.send({
       status: 'ok',
