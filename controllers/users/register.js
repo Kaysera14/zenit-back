@@ -30,7 +30,7 @@ const register = async (req, res, next) => {
     await sendMail({
       to: email,
       subject: `Verifica tu correo electrónico ${username}`,
-      HTMLPart: `Por favor, <a href='${FRONT}/validate?registrationCode=${registrationCode}'>haz click aquí</a> para validar tu cuenta.<br/> En caso de no funcionar, por favor introduce este código manualmente: ${registrationCode}`,
+      HTMLPart: `Por favor, <a href='${FRONT}/admin/validate?registrationCode=${registrationCode}'>haz click aquí</a> para validar tu cuenta.<br/> En caso de no funcionar, por favor introduce este código manualmente: ${registrationCode}`,
     });
     res.status(201).send({
       status: 'ok',
