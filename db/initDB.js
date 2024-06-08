@@ -46,7 +46,7 @@ const init = async () => {
       post VARCHAR(30) NOT NULL,
       url VARCHAR(255) NOT NULL,
       cover BOOLEAN DEFAULT false,
-      FOREIGN KEY (post) REFERENCES models(slug)
+      FOREIGN KEY (post) REFERENCES models(slug) ON UPDATE CASCADE ON DELETE CASCADE
     );
     `);
 
@@ -57,7 +57,7 @@ const init = async () => {
       post VARCHAR(30) NOT NULL,
       url VARCHAR(255) NOT NULL,
       cover BOOLEAN DEFAULT false,
-      FOREIGN KEY (post) REFERENCES models(slug)
+      FOREIGN KEY (post) REFERENCES models(slug) ON UPDATE CASCADE ON DELETE CASCADE
     );
     `);
 
