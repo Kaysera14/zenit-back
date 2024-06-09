@@ -8,7 +8,7 @@ const getAllModels = async () => {
 
     const [result] = await connection.query(
       `
-        SELECT m.model_id, m.slug, m.title, m.category1, m.category2, mi.url AS cover
+        SELECT m.model_id, m.slug, m.title, m.category1, m.category2, m.createdAt, mi.url AS cover
         FROM models m
         JOIN model_images mi ON mi.post = m.slug
         WHERE mi.cover = 1
