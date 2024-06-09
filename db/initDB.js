@@ -28,7 +28,7 @@ const init = async () => {
     console.log('Creando tabla models');
     await connection.query(`
     CREATE TABLE IF NOT EXISTS models(
-      model_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+      model_id INT UNSIGNED PRIMARY KEY,
       slug VARCHAR(30) UNIQUE NOT NULL,
       title VARCHAR(50) NOT NULL,
       description VARCHAR(1024) NOT NULL,
