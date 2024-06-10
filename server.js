@@ -6,7 +6,7 @@ const cors = require('cors');
 const fileUpload = require('express-fileupload');
 
 const app = express();
-const { port } = require('./config.js');
+const { PORT } = require('./config.js');
 
 app.use(cors());
 
@@ -65,6 +65,8 @@ app.use((req, res) => {
   res.status(404).send({ status: 'error', message: 'Not found' });
 });
 
-app.listen(port, () =>
-  console.log(`El servidor se está ejecutando en: http://localhost:${port}`)
+app.listen(PORT, () =>
+  console.log(
+    `El servidor se está ejecutando en: http://localhost:${PORT}/api/`
+  )
 );
