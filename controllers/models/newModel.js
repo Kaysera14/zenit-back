@@ -11,6 +11,7 @@ const {
   createPathIfNotExists,
 } = require('../../helpers/');
 const modelImages = require('../../db/queries/models/modelImages.js');
+const modelVideos = require('../../db/queries/models/modelVideos.js');
 
 const newModel = async (req, res, next) => {
   try {
@@ -23,7 +24,8 @@ const newModel = async (req, res, next) => {
       throw generateError('Forbidden request', 403);
     }
 
-    const { title, description, technologies, category1, category2 } = req.body;
+    const { title, description, technologies, category1, category2, videos } =
+      req.body;
     const { images } = req.files;
     const url = slug(title);
 
@@ -63,6 +65,13 @@ const newModel = async (req, res, next) => {
         cover = 0;
         await modelImages(url, imgUrl, cover);
       }
+    }
+
+    let videoLinks = videos.split(',');
+
+    for (let video of videoLinks) {
+      const cover = 0;
+      await modelVideos(url, video.trim(), cover);
     }
 
     res.send({
