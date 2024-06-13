@@ -26,7 +26,7 @@ const newModel = async (req, res, next) => {
 
     const { title, description, technologies, category1, category2, videos } =
       req.body;
-    const { images } = req.files;
+    let { images } = req.files;
     const url = slug(title);
 
     await createModel(
@@ -39,6 +39,10 @@ const newModel = async (req, res, next) => {
     );
 
     // Procesado de imagenes
+    if (!Array.isArray(images)) {
+      images = [images];
+    }
+
     for (let index = 0; index < images.length; index++) {
       let cover;
       const uuid = randomUUID();
@@ -58,7 +62,7 @@ const newModel = async (req, res, next) => {
           }
         });
 
-      if (index === 0) {
+      if (index === 0 || images.length === 1) {
         cover = 1;
         await modelImages(url, imgUrl, cover);
       } else {
