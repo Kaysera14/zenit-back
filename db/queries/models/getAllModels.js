@@ -8,11 +8,11 @@ const getAllModels = async () => {
 
     const [result] = await connection.query(
       `
-        SELECT m.model_id, m.slug, m.title, m.category1, m.category2, m.createdAt, mi.url AS cover
-        FROM models m
-        JOIN model_images mi ON mi.post = m.slug
-        WHERE mi.cover = 1
-        ORDER BY m.createdAt DESC
+      SELECT m.model_id, m.slug, m.title, m.category1, m.category2, m.createdAt, mi.url AS cover, mv.url AS video
+      FROM models m
+      LEFT JOIN model_images mi ON mi.post = m.slug AND mi.cover = 1
+      LEFT JOIN model_videos mv ON mv.post = m.slug
+      ORDER BY m.createdAt DESC
       `
     );
 

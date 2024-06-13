@@ -26,7 +26,11 @@ const newModel = async (req, res, next) => {
 
     const { title, description, technologies, category1, category2, videos } =
       req.body;
-    let { images } = req.files;
+
+    let images = [];
+    if (req.files) {
+      ({ images } = req.files);
+    }
     const url = slug(title);
 
     await createModel(
@@ -74,7 +78,7 @@ const newModel = async (req, res, next) => {
     let videoLinks = videos.split(',');
 
     for (let video of videoLinks) {
-      const cover = 0;
+      let cover = images.length === 0 ? 1 : 0;
 
       let videoId = video.trim().split('v=')[1];
 
