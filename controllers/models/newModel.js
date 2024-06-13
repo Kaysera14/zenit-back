@@ -73,14 +73,18 @@ const newModel = async (req, res, next) => {
       const cover = 0;
 
       let videoId = video.trim().split('v=')[1];
-      let ampersandPosition = videoId.indexOf('&');
-      if (ampersandPosition != -1) {
-        videoId = videoId.substring(0, ampersandPosition);
+
+      if (videoId) {
+        let ampersandPosition = videoId.indexOf('&');
+        if (ampersandPosition !== -1) {
+          videoId = videoId.substring(0, ampersandPosition);
+        }
+
+        let embedUrl = `https://www.youtube.com/embed/${videoId}`;
+        await modelVideos(url, embedUrl, cover);
+      } else {
+        console.error(`Invalid video URL: ${video}`);
       }
-
-      let embedUrl = `https://www.youtube.com/embed/${videoId}`;
-
-      await modelVideos(url, embedUrl, cover);
     }
 
     res.send({
