@@ -30,7 +30,8 @@ app.use(express.json());
 app.use(fileUpload());
 
 // Middleware para cargar imagenes
-app.use('/uploads/models', express.static('./uploads/models'));
+let staticPath = process.env.RAILWAY_VOLUME_MOUNT_PATH;
+app.use(process.env.RAILWAY_VOLUME_MOUNT_PATH, express.static(staticPath));
 
 // Controllers usuarios
 const { register, validate, login } = require('./controllers/users/index.js');
