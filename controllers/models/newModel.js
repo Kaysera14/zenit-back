@@ -55,7 +55,7 @@ const newModel = async (req, res, next) => {
       await createPathIfNotExists(directory);
       const models = path.join(directory, 'models');
       await createPathIfNotExists(models);
-      const imgUrl = `${process.env.RAILWAY_VOLUME_MOUNT_PATH}/uploads/models/${newName}`;
+      const imgUrl = `${process.env.RAILWAY_VOLUME_MOUNT_PATH}/models/${newName}`;
 
       await sharp(images[index].data)
         .toFormat('webp')
