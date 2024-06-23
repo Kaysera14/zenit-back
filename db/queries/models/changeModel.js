@@ -3,6 +3,7 @@ const getPool = require('../../getDB.js');
 const changeModel = async (
   url,
   oldTitle,
+  model_id,
   title,
   description,
   technologies,
@@ -10,15 +11,38 @@ const changeModel = async (
   category2
 ) => {
   let connection;
-
   try {
     connection = await getPool();
+    let newModelId;
     const setClauses = [];
     const values = [];
+
+    const [checkID] = await connection.query(
+      'SELECT model_id FROM models WHERE model_id = ?',
+      [model_id]
+    );
+
+    if (checkID.length === 1) {
+      const [getCurrentModelId] = await connection.query(
+        'SELECT model_id FROM models WHERE slug = ?',
+        [oldTitle]
+      );
+      newModelId = getCurrentModelId[0].model_id;
+    }
+
+    const [temporalID] = await connection.query(
+      'UPDATE models SET model_id = 999 WHERE model_id = ?',
+      [model_id]
+    );
 
     if (url !== undefined && url !== null && url !== '') {
       setClauses.push('slug = ?');
       values.push(url);
+    }
+
+    if (model_id !== undefined && model_id !== null && model_id !== '') {
+      setClauses.push('model_id = ?');
+      values.push(model_id);
     }
 
     if (title !== undefined && title !== null && title !== '') {
@@ -58,6 +82,11 @@ const changeModel = async (
     values.push(oldTitle);
 
     const [{ result }] = await connection.query(sql, values);
+
+    const [updateOldID] = await connection.query(
+      'UPDATE models SET model_id = ? WHERE model_id = 999',
+      [newModelId]
+    );
 
     return result;
   } catch (error) {

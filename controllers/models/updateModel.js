@@ -19,6 +19,7 @@ const updateModel = async (req, res, next) => {
     const url = slug(title);
 
     const newData = {
+      ...(req.body.model_id && { model_id: req.body.model_id }),
       ...(req.body.title && { title: req.body.title }),
       ...(req.body.description && { description: req.body.description }),
       ...(req.body.technologies && { technologies: req.body.technologies }),
@@ -31,6 +32,7 @@ const updateModel = async (req, res, next) => {
     const rowsAffected = await changeModel(
       url,
       oldTitle,
+      newData.model_id,
       newData.title,
       newData.description,
       newData.technologies,
