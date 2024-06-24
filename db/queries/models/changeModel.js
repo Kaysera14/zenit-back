@@ -88,17 +88,6 @@ const changeModel = async (
       [newModelId]
     );
 
-    console.log(
-      url,
-      oldTitle,
-      model_id,
-      title,
-      description,
-      technologies,
-      category1,
-      category2
-    );
-    console.log(result);
     return result;
   } catch (error) {
     console.error(error);
