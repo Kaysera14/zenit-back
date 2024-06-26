@@ -30,11 +30,11 @@ app.use(express.json());
 app.use(fileUpload());
 
 // Middleware para cargar imagenes railway
-/* let staticPath = process.env.RAILWAY_VOLUME_MOUNT_PATH;
-app.use(process.env.RAILWAY_VOLUME_MOUNT_PATH, express.static(staticPath)); */
+let staticPath = process.env.RAILWAY_VOLUME_MOUNT_PATH;
+app.use(process.env.RAILWAY_VOLUME_MOUNT_PATH, express.static(staticPath));
 
 // Middleware para cargar imagenes local
-app.use('/uploads/models', express.static('./uploads/models'));
+/* app.use('/uploads/models', express.static('./uploads/models')); */
 
 // Controllers usuarios
 const { register, validate, login } = require('./controllers/users/index.js');
