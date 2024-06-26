@@ -20,7 +20,7 @@ const getAllModels = async () => {
       FROM 
         models m
       ORDER BY 
-        m.model_id ASC
+        m.createdAt DESC
       `
     );
 
