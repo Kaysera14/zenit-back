@@ -51,11 +51,15 @@ const newModel = async (req, res, next) => {
       let cover;
       const uuid = randomUUID();
       const newName = `${url}__${uuid}.webp`;
-      const directory = process.env.RAILWAY_VOLUME_MOUNT_PATH || '/app/models';
-      /* await createPathIfNotExists(directory);
-      const models = path.join(directory, 'models');
-      await createPathIfNotExists(models); */
-      const imgUrl = `${directory}/${newName}`;
+      // Imagenes en railway
+      /* const directory = process.env.RAILWAY_VOLUME_MOUNT_PATH || '/app/models';
+      const imgUrl = `${directory}/${newName}`; */
+
+      // Imagenes en local
+      const directory = path.join(__dirname, '..', '..', 'uploads');
+      await createPathIfNotExists(directory);
+      await createPathIfNotExists(models);
+      const imgUrl = `/uploads/models/${newName}`;
 
       await sharp(images[index].data)
         .toFormat('webp')

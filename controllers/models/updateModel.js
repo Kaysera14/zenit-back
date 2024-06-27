@@ -14,15 +14,13 @@ const updateModel = async (req, res, next) => {
       throw generateError('Forbidden request', 403);
     }
 
-    const { model_id, title, description, technologies, category1, category2 } =
-      req.body;
+    const { title, description, technologies, category1, category2 } = req.body;
     const oldTitle = req.params.slug;
     const url = slug(title);
 
     const rowsAffected = await changeModel(
       url,
       oldTitle,
-      model_id,
       title,
       description,
       technologies,
@@ -39,6 +37,14 @@ const updateModel = async (req, res, next) => {
     res.status(200).send({
       status: 'ok',
       message: 'Modelo actualizado correctamente',
+      data: {
+        url,
+        title,
+        description,
+        technologies,
+        category1,
+        category2,
+      },
     });
   } catch (error) {
     next(error);
