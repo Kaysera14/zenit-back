@@ -14,18 +14,28 @@ const updateModel = async (req, res, next) => {
       throw generateError('Forbidden request', 403);
     }
 
-    const { title, description, technologies, category1, category2 } = req.body;
+    const { title } = req.body;
     const oldTitle = req.params.slug;
     const url = slug(title);
+
+    const newData = {
+      ...(req.body.title && { title: req.body.title }),
+      ...(req.body.description && { description: req.body.description }),
+      ...(req.body.technologies && { technologies: req.body.technologies }),
+      ...(req.body.category1 && {
+        category1: req.body.category1,
+      }),
+      ...(req.body.category2 && { category2: req.body.category2 }),
+    };
 
     const rowsAffected = await changeModel(
       url,
       oldTitle,
-      title,
-      description,
-      technologies,
-      category1,
-      category2
+      newData.title,
+      newData.description,
+      newData.technologies,
+      newData.category1,
+      newData.category2
     );
 
     if (rowsAffected === 0) {
