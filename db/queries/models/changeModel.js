@@ -3,7 +3,6 @@ const getPool = require('../../getDB.js');
 const changeModel = async (
   url,
   oldTitle,
-  model_id,
   title,
   description,
   technologies,
