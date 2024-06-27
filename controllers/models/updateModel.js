@@ -28,6 +28,16 @@ const updateModel = async (req, res, next) => {
       ...(req.body.category2 && { category2: req.body.category2 }),
     };
 
+    console.log(
+      url,
+      oldTitle,
+      newData.title,
+      newData.description,
+      newData.technologies,
+      newData.category1,
+      newData.category2
+    );
+
     const rowsAffected = await changeModel(
       url,
       oldTitle,
@@ -49,15 +59,11 @@ const updateModel = async (req, res, next) => {
       message: 'Modelo actualizado correctamente',
       data: {
         url,
-        title,
-        description,
-        technologies,
-        category1,
-        category2,
+        newData,
       },
     });
   } catch (error) {
-    next(error);
+    console.error(error);
   }
 };
 
